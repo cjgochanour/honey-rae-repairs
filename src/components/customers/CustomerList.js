@@ -13,9 +13,12 @@ export const CustomerList = () => {
 
     return (
         <>
-            {customers.map((customer) => (
-                <h2 key={`customer--${customer.id}`}>{customer.name}</h2>
-            ))}
+            <h2>Customer List</h2>
+            <ul>
+                {customers.map((customer) => (
+                    <li key={`customer--${customer.id}`}>{customer.name}</li>
+                ))}
+            </ul>
         </>
     );
 };
