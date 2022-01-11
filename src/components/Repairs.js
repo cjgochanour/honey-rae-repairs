@@ -1,5 +1,6 @@
 import { ApplicationViews } from "./ApplicationViews.js";
 import { NavBar } from "./nav/NavBar.js";
+import "./Repairs.css";
 
 export const Repairs = () => {
     return (
