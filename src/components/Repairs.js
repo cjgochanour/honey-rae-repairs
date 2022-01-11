@@ -1,5 +1,6 @@
 import { CustomerList } from "./customers/CustomerList.js";
 import { EmployeeList } from "./employees/EmployeeList.js";
+import { TicketList } from "./serviceTickets/TicketList.js";
 
 export const Repairs = () => {
     return (
@@ -7,6 +8,7 @@ export const Repairs = () => {
             <h1>Honey Rae's Repair Shop</h1>
             <CustomerList />
             <EmployeeList />
+            <TicketList />
         </>
     );
 };

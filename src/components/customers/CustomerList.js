@@ -24,11 +24,9 @@ export const CustomerList = () => {
         <>
             <h2>Customer List</h2>
             <div>{totalCustomers}</div>
-            <ul>
-                {customers.slice(0, 5).map((customer) => (
-                    <li key={`customer--${customer.id}`}>{customer.name}</li>
-                ))}
-            </ul>
+            {customers.slice(0, 5).map((customer) => (
+                <p key={`customer--${customer.id}`}>{customer.name}</p>
+            ))}
         </>
     );
 };
