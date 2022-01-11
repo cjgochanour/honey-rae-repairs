@@ -1,14 +1,12 @@
-import { CustomerList } from "./customers/CustomerList.js";
-import { EmployeeList } from "./employees/EmployeeList.js";
-import { TicketList } from "./serviceTickets/TicketList.js";
+import { ApplicationViews } from "./ApplicationViews.js";
+import { NavBar } from "./nav/NavBar.js";
 
 export const Repairs = () => {
     return (
         <>
+            <NavBar />
             <h1>Honey Rae's Repair Shop</h1>
-            <CustomerList />
-            <EmployeeList />
-            <TicketList />
+            <ApplicationViews />
         </>
     );
 };
