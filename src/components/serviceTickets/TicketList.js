@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import "./Tickets.css";
 
 export const TicketList = () => {
     const [tickets, updateTickets] = useState([]);
@@ -21,8 +22,9 @@ export const TicketList = () => {
             </div>
             {tickets.map((ticket) => {
                 return (
-                    <p key={`ticket--${ticket.id}`}>
-                        {ticket.description} submitted by {ticket.customer.name} and worked on by {ticket.employee.name}
+                    <p key={`ticket--${ticket.id}`} className={ticket.emergency ? "ticket emergency" : "ticket"}>
+                        {ticket.emergency ? "🚑" : ""} {ticket.description} submitted by {ticket.customer.name} and
+                        worked on by {ticket.employee.name}
                     </p>
                 );
             })}
