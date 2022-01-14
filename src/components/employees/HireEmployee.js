@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { postEmployee } from "../ApiManager.js";
 
 export const HireEmployee = () => {
     const [employee, setEmp] = useState({ name: "", specialty: "" });
@@ -8,12 +9,7 @@ export const HireEmployee = () => {
     const saveEmployee = (event) => {
         event.preventDefault();
         const hire = { name: employee.name, specialty: employee.specialty };
-        const fetchOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(hire),
-        };
-        fetch("http://localhost:8088/employees", fetchOptions).then(() => history.push("/employees"));
+        postEmployee(hire).then(() => history.push("/employees"));
     };
 
     return (

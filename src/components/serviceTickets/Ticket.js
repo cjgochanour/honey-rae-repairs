@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { getTicketById, getAllEmployees, putTicket } from "../ApiManager.js";
 
 export const Ticket = () => {
     const [ticket, set] = useState({});
@@ -9,15 +10,11 @@ export const Ticket = () => {
     const history = useHistory();
 
     useEffect(() => {
-        fetch(`http://localhost:8088/serviceTickets/${ticketId}?_expand=customer&_expand=employee`)
-            .then((res) => res.json())
-            .then((data) => set(data));
+        getTicketById(ticketId).then((data) => set(data));
     }, [ticketId]);
 
     useEffect(() => {
-        fetch("http://localhost:8088/employees")
-            .then((res) => res.json())
-            .then((data) => setEmployees(data));
+        getAllEmployees().then((data) => setEmployees(data));
     }, []);
 
     const assignEmployee = (event) => {
@@ -28,11 +25,7 @@ export const Ticket = () => {
             emergency: ticket.emergency,
             dateCompleted: ticket.dateCompleted,
         };
-        return fetch(`http://localhost:8088/serviceTickets/${ticketId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newServiceTicketObject),
-        }).then(() => {
+        return putTicket(ticketId, newServiceTicketObject).then(() => {
             history.push("/tickets");
         });
     };

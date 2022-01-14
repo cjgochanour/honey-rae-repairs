@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { deleteTicket, getAllTickets } from "../ApiManager.js";
 import "./Tickets.css";
 
 export const TicketList = () => {
@@ -7,19 +8,15 @@ export const TicketList = () => {
     const history = useHistory();
 
     const fetchTickets = () => {
-        fetch("http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
-            .then((res) => res.json())
-            .then((data) => {
-                updateTickets(data);
-            });
+        return getAllTickets().then((data) => updateTickets(data));
     };
 
     useEffect(() => {
-        fetchTickets();
+        return fetchTickets();
     }, []);
 
-    const deleteTicket = (id) => {
-        fetch(`http://localhost:8088/serviceTickets/${id}`, { method: "DELETE" }).then(fetchTickets());
+    const removeTicket = (id) => {
+        return deleteTicket(id).then(fetchTickets());
     };
 
     return (
@@ -35,7 +32,7 @@ export const TicketList = () => {
                         submitted by {ticket.customer.name} and worked on by {ticket.employee.name}
                         <button
                             onClick={() => {
-                                deleteTicket(ticket.id);
+                                removeTicket(ticket.id);
                             }}
                         >
                             Delete

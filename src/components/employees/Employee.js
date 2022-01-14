@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getEmployeeById } from "../ApiManager.js";
 
 export const Employee = () => {
     const [employee, set] = useState({});
     const { employeeId } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:8088/employees/${employeeId}`)
-            .then((res) => res.json())
-            .then((data) => set(data));
+        getEmployeeById(employeeId).then((data) => set(data));
     }, [employeeId]);
 
     return (
